@@ -50,7 +50,7 @@ public class TraversalPractice {
     public static void printOddNodesPreOrder(TreeNode node) {
          if(node == null) return;
 
-         if(node.data % 2 == 1) System.out.println(node.data);
+         if(node.data % 2 == 1 || node.data % 2 == -1) System.out.println(node.data);
         printOddNodesPreOrder(node.left);
         printOddNodesPreOrder(node.right);
 
@@ -80,7 +80,14 @@ public class TraversalPractice {
      * @return the sum of the leaf node values
      */
     public static int sumLeafNodes(TreeNode node) {
-        return -1;
+        if(node == null) return 0;
+        int sum = 0;
+        if(node.left == null && node.right == null){
+            sum += node.data;
+        }
+        sum += sumLeafNodes(node.left);
+        sum += sumLeafNodes(node.right);
+        return sum;
     }
 
     /**
